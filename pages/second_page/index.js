@@ -96,16 +96,16 @@ const createWalletItem = (className, currency) => {
     const cardCurrency = document.createElement('div');
     cardCurrency.textContent = currency;
 
-    walletItem.appendChild(cardType);
-    walletItem.appendChild(cardCurrency);
+    walletItem.append(cardType);
+    walletItem.append(cardCurrency);
 
     return walletItem;
 };
 
-walletContainer.appendChild(createWalletItem('visa-first', 'RUB'));
-walletContainer.appendChild(createWalletItem('visa-second', 'RUB'));
-walletContainer.appendChild(createWalletItem('visa-third', 'RUB'));
-walletContainer.appendChild(createWalletItem('visa-four', 'RUB'));
+walletContainer.append(createWalletItem('visa-first', 'RUB'));
+walletContainer.append(createWalletItem('visa-second', 'RUB'));
+walletContainer.append(createWalletItem('visa-third', 'RUB'));
+walletContainer.append(createWalletItem('visa-four', 'RUB'));
 
 const viewAllLink = document.createElement('a');
 viewAllLink.href = '#';
