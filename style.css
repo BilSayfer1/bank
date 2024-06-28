@@ -2,63 +2,138 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.reg_h2 {
-  margin-top: 100px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 30px;
-  margin-bottom: 30px;
+a {
+  text-decoration: none;
 }
 
-.inpts {
-  display: flex;
-  row-gap: 10px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  input {
-      padding-left: 10px;
-      font-size: 14px;
-      font-weight: 550;
-      border: 2px solid rgb(100, 100, 100);
-      width: 350px;
-      height: 40px;
-      border-radius: 5px;
+header {
+  height: 60px;
+  background-color: rgb(194, 186, 186);
+  color: white;
+
+  .glav_header {
+      margin: 0px 50px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+
+      .left {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          a {
+
+              text-align: center;
+              color: white;
+              text-decoration: none;
+              font-size: 16px;
+              font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+          }
+      }
+
+      .right {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          a {
+              text-align: center;
+              color: white;
+              text-decoration: none;
+              font-size: 16px;
+              font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+          }
+
+          img {
+              width: 15px;
+              height: 15px;
+          }
+      }
+
   }
 }
-.email::placeholder {
-  color: rgb(44, 44, 44);
+
+.glav_main {
+  margin: 40px 100px;
 }
-.password::placeholder {
-  color: rgb(44, 44, 44);
+
+.wallet-container {
+  display: flex;
+  gap: 20px;
 }
-.surname::placeholder {
-  color: rgb(44, 44, 44);
-}
-.name::placeholder {
-  color: rgb(44, 44, 44);
-}
-.resume {
-  width: 350px;
-  height: 40px;
-  border-radius: 5px;
+
+.wallet-item {
+  width: 250px;
+  height: 150px;
+  border-radius: 10px;
+  padding: 10px;
   color: white;
-  background-color: blue;
-  font-weight: 550;
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.enter_in_account {
-margin-top: 10px;
-border: none;
-background-color: white;
-color: blue;
-width: 350px;
-height: 40px;
-cursor: pointer;
-font-weight: 550;
-font-size: 14;
+
+.wallet-item.visa-first {
+  background: linear-gradient(to right, #e96443, #904e95);
+}
+
+.wallet-item.visa-second {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+.wallet-item.visa-third {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+}
+
+.wallet-item.visa-four {
+  background: linear-gradient(to right, #141e30, #243b55);
+}
+
+.no-underline {
+  text-decoration: none;
+  color: blue;
+  font-size: 20px;
+}
+
+.cards_main {
+  margin: 50px 100px;
+}
+.wallet-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+padding: 0px 100px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th {
+  background-color: #f2f2f2;
+  color: gray;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:hover {
+  background-color: #ddd;
+  
+}
+.link {
+  margin-top: 20px;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 100px;
+}
+.trank {
+  margin-left: 100px;
 }

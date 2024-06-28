@@ -1,80 +1,127 @@
-import {base_url} from "./lib/http.js"
 
-async function validateForm(event) {
-  event.preventDefault(); 
+const header = document.getElementById('main-header');
 
-  const emailInput = document.querySelector('.email');
-  const nameInput = document.querySelector('.name');
-  const surnameInput = document.querySelector('.surname');
-  const passwordInput = document.querySelector('.password');
+const glavHeader = document.createElement('div');
+glavHeader.className = 'glav_header';
 
-  const email = emailInput.value.trim();
-  const name = nameInput.value.trim();
-  const surname = surnameInput.value.trim();
-  const password = passwordInput.value.trim();
+const leftMenu = document.createElement('div');
+leftMenu.className = 'left';
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const nameRegex = /^[A-ZА-ЯЁ][a-zа-яё'-]*$/i;
-  const surnameRegex = /^[A-ZА-ЯЁ][a-zа-яё'-]*$/i;
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const mainLink = document.createElement('a');
+mainLink.href = '#';
+mainLink.textContent = 'Главная';
 
-  if (!emailRegex.test(email)) {
-    alert('Введите корректный адрес электронной почты');
-    return false;
-  }
+const walletsLink = document.createElement('a');
+walletsLink.href = '#';
+walletsLink.textContent = 'Мои Кошельки';
 
-  if (!nameRegex.test(name)) {
-    alert('Введите правильное имя');
-    return false;
-  }
+const transactionsLink = document.createElement('a');
+transactionsLink.href = '#';
+transactionsLink.textContent = 'Мои транкзакции';
 
-  if (!surnameRegex.test(surname)) {
-    alert('Введите правильную фамилию');
-    return false;
-  }
+leftMenu.append(mainLink);
+leftMenu.append(walletsLink);
+leftMenu.append(transactionsLink);
 
-  if (!passwordRegex.test(password)) {
-    alert('Пароль должен содержать минимум 8 символов, одну заглавную букву, одну строчную букву, одну цифру и один символ');
-    return false;
-  }
+const rightMenu = document.createElement('div');
+rightMenu.className = 'right';
 
+const storedEmail = localStorage.getItem('email') 
 
+const userEmailLink = document.createElement('a');
+userEmailLink.href = '#';
+userEmailLink.textContent = storedEmail;
 
-  const userData = {
-    email: email,
-    name: name,
-    surname: surname,
-    password: password
-  };
-
-  try {
-    const response = await fetch(base_url + '/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userData)
-    });
-
-    if (response.ok) {
-      alert('Вы прошлиы регистрацию');
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
-      localStorage.setItem('name', name);
-      localStorage.setItem('surname', surname);
-      location.assign('/pages/first_page/');
-    } else {
-      alert('Ошибка регистрации');
-    }
-  } catch (error) {
-    console.error('Ошибка:', error);
-  }
+const logoutIcon = document.createElement('img');
+logoutIcon.src = '/images/icons8-выход-50.png';
+logoutIcon.onclick = () => {
+    location.assign('/pages/sign_in/')
 }
 
-const form = document.forms.namedItem('registration');
-form.onsubmit = (event) => validateForm(event);
 
-const enterInAccountButton = document.querySelector('.enter_in_account');
-enterInAccountButton.onclick = () => {
-  location.assign('/login.html');
+rightMenu.append(userEmailLink);
+rightMenu.append(logoutIcon);
+
+glavHeader.append(leftMenu);
+glavHeader.append(rightMenu);
+
+header.append(glavHeader);
+
+const container = document.getElementById('container');
+
+const glavMain = document.createElement('div');
+glavMain.className = 'glav_main';
+
+const mainHeader = document.createElement('div');
+mainHeader.className = 'main_header';
+
+const welcomeMessage = document.createElement('h1');
+welcomeMessage.textContent = 'Добро пожаловать, ';
+
+const nameSpan = document.createElement('span');
+nameSpan.textContent = localStorage.getItem('name') + " " + localStorage.getItem('surname');
+
+welcomeMessage.append(nameSpan);
+
+const emailLink = document.createElement('a');
+
+emailLink.href = '#';
+emailLink.textContent = localStorage.getItem('email')
+
+mainHeader.append(welcomeMessage);
+mainHeader.append(emailLink);
+
+glavMain.append(mainHeader);
+
+container.append(glavMain);
+
+
+const cardsContainer = document.getElementById('cards-container');
+
+const cardsMain = document.createElement('div');
+cardsMain.className = 'cards_main';
+
+const headerr = document.createElement('h1');
+headerr.textContent = 'Мои кошельки';
+
+const walletContainer = document.createElement('div');
+walletContainer.className = 'wallet-container';
+
+const createWalletItem = (className, currency) => {
+    const walletItem = document.createElement('div');
+    walletItem.className = `wallet-item ${className}`;
+
+    const cardType = document.createElement('div');
+    cardType.textContent = 'VISA';
+
+    const cardCurrency = document.createElement('div');
+    cardCurrency.textContent = currency;
+
+    walletItem.append(cardType);
+    walletItem.append(cardCurrency);
+
+    return walletItem;
 };
+
+walletContainer.append(createWalletItem('visa-first', 'RUB'));
+walletContainer.append(createWalletItem('visa-second', 'RUB'));
+walletContainer.append(createWalletItem('visa-third', 'RUB'));
+walletContainer.append(createWalletItem('visa-four', 'RUB'));
+
+const viewAllLink = document.createElement('a');
+viewAllLink.href = '#';
+viewAllLink.className = 'no-underline';
+viewAllLink.textContent = 'Смотреть все кошельки';
+
+cardsMain.append(headerr);
+cardsMain.append(walletContainer);
+cardsMain.append(viewAllLink);
+
+cardsContainer.append(cardsMain);
+
+
+walletsLink.onclick = () => {
+    location.assign('/pages/create_wallets/')
+}
+
+
